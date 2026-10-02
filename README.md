@@ -9,6 +9,9 @@ Add-on for atlascontrol.io. Scrapes vendor product pages (name, SKU, MPN, specs,
   (JSON-LD Product, OpenGraph, spec tables) with per-vendor selector overrides.
 - Storage: Supabase `vendors`, `products`, `scrape_runs` + public `product-images` bucket. Without Supabase env the CLI writes `data/out/<vendor>.jsonl`.
 - `GET /api/products?q=&vendor=&sku=` (Bearer `SCRAPE_SECRET`) is what Atlas calls. `POST/GET /api/scrape?vendor=&limit=` runs a batch (Vercel cron daily).
+- **Atlas integration (agreed with Darko): API pull, matched on SKU or part number.**
+  `GET /api/products/lookup?codes=C42D2PA,U17XYE` (or repeated `?code=`; max 50) returns `{ matches: { "<code>": [product, ...] } }`.
+  Each code matches SKU or manufacturer part number, case-insensitive. Header: `Authorization: Bearer <SCRAPE_SECRET>`.
 - Admin UI at `/` and `/vendors` is behind Basic auth (password = `SCRAPE_SECRET`).
 
 ## Setup
