@@ -1,0 +1,308 @@
+{
+  "_note": "Seeded from the ARN business directory (arnnet.com.au/business-directory) on 2026-10-02, plus HP/Dell/Lenovo. Security vendors excluded (Sophos, ESET, Malwarebytes, Fortinet, Palo Alto, Check Point, SentinelOne, Darktrace, Tenable, Zscaler, Splunk, Sumo Logic, Radware, F5, etc). enabled=true means the scraper has a verified config.",
+  "vendors": [
+    {
+      "slug": "hp",
+      "name": "HP",
+      "website": "https://www.hp.com",
+      "category": "hardware",
+      "enabled": true,
+      "config": {
+        "sitemaps": [
+          "https://www.hp.com/au-en/shop/sitemap-1-8.xml"
+        ],
+        "productUrlPattern": "/au-en/shop/hp-[a-z0-9-]+-[a-z0-9]{5,8}.html$",
+        "delayMs": 2000,
+        "maxPages": 25,
+        "selectors": {
+          "name": "h1",
+          "sku": ".product-info-stock-sku .sku",
+          "specRows": "dl.product-spec-attribute",
+          "specLabel": ".label",
+          "specValue": ".value"
+        }
+      }
+    },
+    {
+      "slug": "dell",
+      "name": "Dell",
+      "website": "https://www.dell.com",
+      "category": "hardware",
+      "enabled": true,
+      "config": {
+        "sitemaps": [
+          "https://www.dell.com/index-product-pages-hreflang-sitemap.xml.gz"
+        ],
+        "productUrlPattern": "dell.com/en-au/shop/.+/spd/",
+        "delayMs": 2000,
+        "maxPages": 25,
+        "selectors": {
+          "specRows": "li:has(.title-tech-spec)",
+          "specLabel": ".title-tech-spec",
+          "specValue": "span:not(.title-tech-spec)"
+        },
+        "imagePattern": "/product-images/"
+      }
+    },
+    {
+      "slug": "lenovo",
+      "name": "Lenovo",
+      "website": "https://www.lenovo.com",
+      "category": "hardware",
+      "enabled": false,
+      "note": "www.lenovo.com returns 403 (Akamai bot protection) to our crawler. Needs a partner data feed, PSREF export, or a permitted alternative; do not evade."
+    },
+    {
+      "slug": "hpe",
+      "name": "HPE",
+      "website": "https://www.hpe.com",
+      "category": "hardware"
+    },
+    {
+      "slug": "cisco",
+      "name": "Cisco",
+      "website": "https://www.cisco.com",
+      "category": "networking"
+    },
+    {
+      "slug": "juniper",
+      "name": "Juniper Networks",
+      "website": "https://www.juniper.net",
+      "category": "networking"
+    },
+    {
+      "slug": "extreme",
+      "name": "Extreme Networks",
+      "website": "https://www.extremenetworks.com",
+      "category": "networking"
+    },
+    {
+      "slug": "nokia",
+      "name": "Nokia",
+      "website": "https://www.nokia.com",
+      "category": "networking"
+    },
+    {
+      "slug": "avaya",
+      "name": "Avaya",
+      "website": "https://www.avaya.com",
+      "category": "software"
+    },
+    {
+      "slug": "ribbon",
+      "name": "Ribbon Communications",
+      "website": "https://ribboncommunications.com",
+      "category": "networking"
+    },
+    {
+      "slug": "opengear",
+      "name": "Opengear",
+      "website": "https://opengear.com",
+      "category": "networking"
+    },
+    {
+      "slug": "cambium",
+      "name": "Cambium Networks",
+      "website": "https://www.cambiumnetworks.com",
+      "category": "networking"
+    },
+    {
+      "slug": "ericsson",
+      "name": "Ericsson",
+      "website": "https://www.ericsson.com",
+      "category": "networking"
+    },
+    {
+      "slug": "velocloud",
+      "name": "VeloCloud",
+      "website": "https://www.velocloud.com",
+      "category": "networking"
+    },
+    {
+      "slug": "netscout",
+      "name": "Netscout",
+      "website": "https://www.netscout.com",
+      "category": "networking"
+    },
+    {
+      "slug": "brother",
+      "name": "Brother",
+      "website": "https://www.brother.com.au",
+      "category": "peripherals"
+    },
+    {
+      "slug": "epson",
+      "name": "Epson",
+      "website": "https://www.epson.com.au",
+      "category": "peripherals"
+    },
+    {
+      "slug": "zebra",
+      "name": "Zebra",
+      "website": "https://www.zebra.com",
+      "category": "peripherals"
+    },
+    {
+      "slug": "honeywell",
+      "name": "Honeywell",
+      "website": "https://www.honeywell.com",
+      "category": "peripherals"
+    },
+    {
+      "slug": "datalogic",
+      "name": "Datalogic",
+      "website": "https://www.datalogic.com",
+      "category": "peripherals"
+    },
+    {
+      "slug": "toshiba-tec",
+      "name": "Toshiba TEC",
+      "website": "https://www.toshibatec.com.au",
+      "category": "peripherals"
+    },
+    {
+      "slug": "elo",
+      "name": "Elo Touch",
+      "website": "https://www.elotouch.com",
+      "category": "peripherals"
+    },
+    {
+      "slug": "advantech",
+      "name": "Advantech",
+      "website": "https://www.advantech.com",
+      "category": "hardware"
+    },
+    {
+      "slug": "ergotron",
+      "name": "Ergotron",
+      "website": "https://www.ergotron.com",
+      "category": "peripherals"
+    },
+    {
+      "slug": "atdec",
+      "name": "Atdec",
+      "website": "https://atdec.com",
+      "category": "peripherals"
+    },
+    {
+      "slug": "apricorn",
+      "name": "Apricorn",
+      "website": "https://www.apricorn.com",
+      "category": "hardware"
+    },
+    {
+      "slug": "atto",
+      "name": "ATTO Technology",
+      "website": "https://www.atto.com",
+      "category": "hardware"
+    },
+    {
+      "slug": "kiloview",
+      "name": "Kiloview",
+      "website": "https://www.kiloview.com",
+      "category": "hardware"
+    },
+    {
+      "slug": "vertiv",
+      "name": "Vertiv",
+      "website": "https://www.vertiv.com",
+      "category": "hardware"
+    },
+    {
+      "slug": "motorola-solutions",
+      "name": "Motorola Solutions",
+      "website": "https://www.motorolasolutions.com",
+      "category": "hardware"
+    },
+    {
+      "slug": "microsoft",
+      "name": "Microsoft",
+      "website": "https://www.microsoft.com",
+      "category": "software"
+    },
+    {
+      "slug": "aws",
+      "name": "AWS",
+      "website": "https://aws.amazon.com",
+      "category": "software"
+    },
+    {
+      "slug": "broadcom",
+      "name": "Broadcom",
+      "website": "https://www.broadcom.com",
+      "category": "software"
+    },
+    {
+      "slug": "docker",
+      "name": "Docker",
+      "website": "https://www.docker.com",
+      "category": "software"
+    },
+    {
+      "slug": "mirantis",
+      "name": "Mirantis",
+      "website": "https://www.mirantis.com",
+      "category": "software"
+    },
+    {
+      "slug": "logicmonitor",
+      "name": "LogicMonitor",
+      "website": "https://www.logicmonitor.com",
+      "category": "software"
+    },
+    {
+      "slug": "soti",
+      "name": "SOTI",
+      "website": "https://soti.net",
+      "category": "software"
+    },
+    {
+      "slug": "ivanti",
+      "name": "Ivanti",
+      "website": "https://www.ivanti.com",
+      "category": "software"
+    },
+    {
+      "slug": "opentext",
+      "name": "OpenText",
+      "website": "https://www.opentext.com",
+      "category": "software"
+    },
+    {
+      "slug": "bmc-helix",
+      "name": "BMC Helix",
+      "website": "https://www.bmc.com",
+      "category": "software"
+    },
+    {
+      "slug": "backupassist",
+      "name": "BackupAssist",
+      "website": "https://www.backupassist.com",
+      "category": "software"
+    },
+    {
+      "slug": "retrospect",
+      "name": "Retrospect",
+      "website": "https://www.retrospect.com",
+      "category": "software"
+    },
+    {
+      "slug": "boris-fx",
+      "name": "Boris FX",
+      "website": "https://borisfx.com",
+      "category": "software"
+    },
+    {
+      "slug": "seagull-scientific",
+      "name": "Seagull Scientific (BarTender)",
+      "website": "https://www.seagullscientific.com",
+      "category": "software"
+    },
+    {
+      "slug": "keysight",
+      "name": "Keysight",
+      "website": "https://www.keysight.com",
+      "category": "hardware"
+    }
+  ]
+}
