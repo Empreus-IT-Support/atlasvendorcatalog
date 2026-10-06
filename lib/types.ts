@@ -16,6 +16,8 @@ export type VendorConfig = {
     specValue?: string;
     images?: string;
   };
+  /** Spec labels to drop (case-insensitive), e.g. fields that just repeat the name or SKU. */
+  ignoreSpecs?: string[];
   /** Only image URLs matching this regex are kept (drops marketing banners, video thumbnails). */
   imagePattern?: string;
   /** Delay between requests to the same host (ms). Default 1500. */

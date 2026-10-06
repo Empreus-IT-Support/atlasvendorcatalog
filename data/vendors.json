@@ -9,9 +9,10 @@
       "enabled": true,
       "config": {
         "sitemaps": [
+          "https://www.hp.com/au-en/shop/sitemap-1-7.xml",
           "https://www.hp.com/au-en/shop/sitemap-1-8.xml"
         ],
-        "productUrlPattern": "/au-en/shop/hp-[a-z0-9-]+-[a-z0-9]{5,8}.html$",
+        "productUrlPattern": "/au-en/shop/(?!.*(onsite|care|power-supply|kit|warranty|support|adapter|dock|bag|case|sleeve|backpack|stand|mount|cable|battery|charger|keyboard|mouse|headset|printer|officejet|deskjet|laserjet|smart-tank|ink|toner|cartridge|renew))hp-.*(monitor|notebook|laptop|omnibook|elitebook|probook|zbook|workstation|elitedesk|prodesk|desktop-pc|mini-pc)[a-z0-9-]*-[a-z0-9]{5,8}.html$",
         "delayMs": 2000,
         "maxPages": 25,
         "selectors": {
@@ -20,7 +21,11 @@
           "specRows": "dl.product-spec-attribute",
           "specLabel": ".label",
           "specValue": ".value"
-        }
+        },
+        "ignoreSpecs": [
+          "Title",
+          "Sku"
+        ]
       }
     },
     {

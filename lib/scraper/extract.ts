@@ -100,6 +100,8 @@ export function extractProduct(html: string, url: string, cfg: VendorConfig = {}
     }
   }
 
+  for (const k of cfg.ignoreSpecs ?? []) for (const key of Object.keys(specs)) if (key.toLowerCase() === k.toLowerCase()) delete specs[key];
+
   const imgs = new Set<string>(imagesFromLd(ld, url));
   const og = absUrl($('meta[property="og:image"]').attr("content"), url);
   if (og) imgs.add(og);
