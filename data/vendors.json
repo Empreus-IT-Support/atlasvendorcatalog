@@ -67,7 +67,8 @@
       "slug": "cisco",
       "name": "Cisco",
       "website": "https://www.cisco.com",
-      "category": "networking"
+      "category": "networking",
+      "note": "Tested 2026-10-06: AU sitemap has ~110 marketing/category product pages, no SKU/part numbers. Part numbers live in datasheets/PDFs and Cisco Commerce. Not suited to page scraping."
     },
     {
       "slug": "juniper",
@@ -133,7 +134,21 @@
       "slug": "brother",
       "name": "Brother",
       "website": "https://www.brother.com.au",
-      "category": "peripherals"
+      "category": "peripherals",
+      "config": {
+        "sitemaps": [
+          "https://www.brother.com.au/sitemap-product.xml"
+        ],
+        "productUrlPattern": "brother.com.au/en/[a-z-]+/all-[a-z-]+/(?!compare)[a-z0-9-]+$",
+        "delayMs": 2000,
+        "maxPages": 60,
+        "selectors": {
+          "specRows": ".spec-item",
+          "specLabel": ".spec-item-title",
+          "specValue": ".spec-item-description"
+        }
+      },
+      "enabled": true
     },
     {
       "slug": "epson",
@@ -169,7 +184,8 @@
       "slug": "honeywell",
       "name": "Honeywell",
       "website": "https://www.honeywell.com",
-      "category": "peripherals"
+      "category": "peripherals",
+      "note": "www.honeywell.com is corporate content only (news/insights); product pages live on separate division sites (sps.honeywell.com etc). Not configured."
     },
     {
       "slug": "datalogic",
