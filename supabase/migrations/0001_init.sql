@@ -57,3 +57,9 @@ alter table scrape_runs enable row level security;
 insert into storage.buckets (id, name, public)
 values ('product-images', 'product-images', true)
 on conflict (id) do nothing;
+
+-- The app talks to Supabase with the service_role key only. Grant it access explicitly so this works
+-- even when "Automatically expose new tables" is turned off for the project.
+grant usage on schema public to service_role;
+grant all on all tables in schema public to service_role;
+grant all on all sequences in schema public to service_role;
