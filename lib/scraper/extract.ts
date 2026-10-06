@@ -17,10 +17,16 @@ function jsonLdProducts($: cheerio.CheerioAPI): Json[] {
     if (n.hasVariant) walk(n.hasVariant);
   };
   $('script[type="application/ld+json"]').each((_, el) => {
+    const raw = $(el).contents().text();
     try {
-      walk(JSON.parse($(el).contents().text()));
+      walk(JSON.parse(raw));
     } catch {
-      /* ignore malformed block */
+      try {
+        // Some sites emit raw line breaks inside strings (invalid JSON); flatten control chars and retry.
+        walk(JSON.parse(raw.replace(/[\u0000-\u001f]+/g, " ")));
+      } catch {
+        /* ignore malformed block */
+      }
     }
   });
   return found;

@@ -139,13 +139,31 @@
       "slug": "epson",
       "name": "Epson",
       "website": "https://www.epson.com.au",
-      "category": "peripherals"
+      "category": "peripherals",
+      "config": {
+        "sitemaps": [
+          "https://www.epson.com.au/sitemap/sitemap_Static.xml"
+        ],
+        "productUrlPattern": "/products/(printers-for-business|printers-for-home|projectors-for-business-education|projectors-for-home|large-format-printers|scanners-for-business|receipt-printers|commercial-label-printers)/[^/]+/[a-z0-9-]*[0-9][a-z0-9-]*$",
+        "delayMs": 2000,
+        "maxPages": 40
+      },
+      "enabled": true
     },
     {
       "slug": "zebra",
       "name": "Zebra",
       "website": "https://www.zebra.com",
-      "category": "peripherals"
+      "category": "peripherals",
+      "config": {
+        "sitemaps": [
+          "https://www.zebra.com/sitemap.us-sitemap.xml"
+        ],
+        "productUrlPattern": "/us/en/products/(printers|mobile-computers|scanners|tablets|rfid)/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+.html$",
+        "delayMs": 2000,
+        "maxPages": 40
+      },
+      "note": "Config saved but disabled: product pages are family-level with no SKU/MPN and almost no specs. Needs a model-level source."
     },
     {
       "slug": "honeywell",
@@ -181,7 +199,8 @@
       "slug": "ergotron",
       "name": "Ergotron",
       "website": "https://www.ergotron.com",
-      "category": "peripherals"
+      "category": "peripherals",
+      "note": "Blocked by Cloudflare challenge (403). Do not evade."
     },
     {
       "slug": "atdec",
