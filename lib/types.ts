@@ -22,6 +22,8 @@ export type VendorConfig = {
   imagePattern?: string;
   /** Delay between requests to the same host (ms). Default 1500. */
   delayMs?: number;
+  /** Max URLs to collect from sitemaps before choosing which to scrape (database mode). Default 5000. */
+  discoverLimit?: number;
   /** Max product pages per run. Default 50. */
   maxPages?: number;
 };

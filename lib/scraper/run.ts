@@ -17,9 +17,23 @@ export async function scrapeVendor(vendor: Vendor, opts: { limit?: number; log?:
 
   const pattern = cfg.productUrlPattern ? new RegExp(cfg.productUrlPattern) : null;
   const sitemaps = cfg.sitemaps?.length ? cfg.sitemaps : await robotsSitemaps(origin);
+  const sb = db();
   const urls = [...(cfg.seedUrls ?? [])];
-  if (sitemaps.length) urls.push(...(await discoverUrls(sitemaps, pattern, limit, delay)));
-  const targets = [...new Set(urls)].slice(0, limit);
+  // With a database, discover widely and then pick what to scrape; without one, the first `limit` is enough.
+  if (sitemaps.length) urls.push(...(await discoverUrls(sitemaps, pattern, sb ? (cfg.discoverLimit ?? 5000) : limit, delay)));
+  let candidates = [...new Set(urls)];
+
+  if (sb && vendor.id) {
+    // Unseen URLs first, then the stalest, so repeated small cron runs walk the whole catalogue.
+    const seen = new Map<string, string>();
+    for (let from = 0; ; from += 1000) {
+      const { data } = await sb.from("products").select("source_url,scraped_at").eq("vendor_id", vendor.id).range(from, from + 999);
+      for (const r of data ?? []) seen.set(r.source_url, r.scraped_at);
+      if ((data?.length ?? 0) < 1000) break;
+    }
+    candidates.sort((a, b) => (seen.get(a) ?? "").localeCompare(seen.get(b) ?? ""));
+  }
+  const targets = candidates.slice(0, limit);
   result.found = targets.length;
   log(`${vendor.slug}: ${targets.length} candidate URLs`);
 
@@ -44,7 +58,6 @@ export async function scrapeVendor(vendor: Vendor, opts: { limit?: number; log?:
     }
   }
 
-  const sb = db();
   if (sb && vendor.id) {
     await sb.from("vendors").update({ last_scraped_at: new Date().toISOString() }).eq("id", vendor.id);
     await sb.from("scrape_runs").insert({

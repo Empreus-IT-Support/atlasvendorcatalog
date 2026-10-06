@@ -1,3 +1,9 @@
 {
-  "crons": [{ "path": "/api/scrape?limit=10", "schedule": "0 17 * * *" }]
+  "crons": [
+    { "path": "/api/scrape?vendor=hp&limit=10", "schedule": "0 16 * * *" },
+    { "path": "/api/scrape?vendor=dell&limit=10", "schedule": "20 16 * * *" },
+    { "path": "/api/scrape?vendor=epson&limit=10", "schedule": "40 16 * * *" },
+    { "path": "/api/scrape?vendor=brother&limit=10", "schedule": "0 17 * * *" },
+    { "path": "/api/scrape?vendor=advantech&limit=10", "schedule": "20 17 * * *" }
+  ]
 }
