@@ -61,7 +61,8 @@
       "slug": "hpe",
       "name": "HPE",
       "website": "https://www.hpe.com",
-      "category": "hardware"
+      "category": "hardware",
+      "note": "robots.txt unreachable from our crawler (connection fails). Retry later or find alternative host."
     },
     {
       "slug": "cisco",
@@ -74,13 +75,15 @@
       "slug": "juniper",
       "name": "Juniper Networks",
       "website": "https://www.juniper.net",
-      "category": "networking"
+      "category": "networking",
+      "note": "Sitemap lists ~16 URLs only; no product pages found."
     },
     {
       "slug": "extreme",
       "name": "Extreme Networks",
       "website": "https://www.extremenetworks.com",
-      "category": "networking"
+      "category": "networking",
+      "note": "Only ~80 family-level product pages, no SKUs. Not suited."
     },
     {
       "slug": "nokia",
@@ -191,25 +194,38 @@
       "slug": "datalogic",
       "name": "Datalogic",
       "website": "https://www.datalogic.com",
-      "category": "peripherals"
+      "category": "peripherals",
+      "note": "Sitemap is press/media content; product URLs not found in it."
     },
     {
       "slug": "toshiba-tec",
       "name": "Toshiba TEC",
       "website": "https://www.toshibatec.com.au",
-      "category": "peripherals"
+      "category": "peripherals",
+      "note": "robots.txt unreachable from our crawler."
     },
     {
       "slug": "elo",
       "name": "Elo Touch",
       "website": "https://www.elotouch.com",
-      "category": "peripherals"
+      "category": "peripherals",
+      "note": "Returned 503 on robots.txt."
     },
     {
       "slug": "advantech",
       "name": "Advantech",
       "website": "https://www.advantech.com",
-      "category": "hardware"
+      "category": "hardware",
+      "config": {
+        "sitemaps": [
+          "https://www.advantech.com/en-au/sitemap/products-model?language=en-au"
+        ],
+        "productUrlPattern": "/en-au/products/[^/]+/[^/]+/mod_[a-f0-9-]+$",
+        "delayMs": 2000,
+        "maxPages": 60
+      },
+      "enabled": true,
+      "note": "Partial: 3,200 model pages give name, model (as mpn), description, image. Specs are built client-side by Vue, so none captured without a headless browser."
     },
     {
       "slug": "ergotron",
@@ -222,7 +238,8 @@
       "slug": "atdec",
       "name": "Atdec",
       "website": "https://atdec.com",
-      "category": "peripherals"
+      "category": "peripherals",
+      "note": "Sitemap URL redirects (301); not followed yet."
     },
     {
       "slug": "apricorn",

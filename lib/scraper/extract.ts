@@ -77,7 +77,8 @@ export function extractProduct(html: string, url: string, cfg: VendorConfig = {}
 
   const id = (v: string | null) => (v ? v.replace(/^(sku|part number|product number|mpn)\s*:?\s*/i, "").trim() || null : null);
   const sku = id(first(sel.sku && $(sel.sku).first().text(), ld?.sku, offer?.sku));
-  const mpn = id(first(sel.mpn && $(sel.mpn).first().text(), ld?.mpn));
+  // Some vendors (e.g. Advantech) only expose the orderable model name, as schema.org "model".
+  const mpn = id(first(sel.mpn && $(sel.mpn).first().text(), ld?.mpn, typeof ld?.model === "string" ? ld.model : ld?.model?.name));
   const gtin = first(ld?.gtin, ld?.gtin13, ld?.gtin12, ld?.gtin14, ld?.gtin8);
   // A page with no identifier and no structured data is almost certainly not a product page.
   if (!ld && !sku && !mpn && !Object.keys(sel).length) return null;
